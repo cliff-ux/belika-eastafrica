@@ -1,0 +1,806 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belika East Africa - Premium IT Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-orange: #FF6B35;
+            --primary-black: #292F36;
+            --secondary-orange: #FF9A3C;
+            --secondary-black: #292F36;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--primary-black);
+        }
+        
+        .orange-bg {
+            background-color: var(--primary-orange);
+        }
+        
+        .black-bg {
+            background-color: var(--primary-black);
+        }
+        
+        .orange-text {
+            color: var(--primary-orange);
+        }
+        
+        .black-text {
+            color: var(--primary-black);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(41, 47, 54, 0.7), rgba(41, 47, 54, 0.7)), 
+                        url('https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .cart-item:hover {
+            background-color: rgba(255, 107, 53, 0.05);
+        }
+        
+        /* Mobile menu animation */
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+        
+        .mobile-menu {
+            animation: slideIn 0.3s forwards;
+        }
+        
+        /* Loading spinner */
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="black-bg text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-laptop-code text-2xl orange-text"></i>
+                <span class="font-bold text-xl">BELIKA EAST AFRICA</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="hover:text-orange-500 transition">Home</a>
+                <a href="#products" class="hover:text-orange-500 transition">Products</a>
+                <a href="#categories" class="hover:text-orange-500 transition">Categories</a>
+                <a href="#about" class="hover:text-orange-500 transition">About</a>
+                <a href="#contact" class="hover:text-orange-500 transition">Contact</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button id="cartBtn" class="relative">
+                    <i class="fas fa-shopping-cart text-xl orange-text"></i>
+                    <span id="cartCount" class="absolute -top-2 -right-2 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </button>
+                <button id="searchBtn" class="md:hidden">
+                    <i class="fas fa-search text-xl orange-text"></i>
+                </button>
+                <button id="menuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-xl orange-text"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu hidden fixed inset-y-0 right-0 w-64 black-bg text-white p-4 shadow-lg">
+            <button id="closeMenuBtn" class="absolute top-4 right-4">
+                <i class="fas fa-times text-xl orange-text"></i>
+            </button>
+            
+            <div class="mt-12 space-y-6">
+                <a href="#" class="block hover:text-orange-500 transition">Home</a>
+                <a href="#products" class="block hover:text-orange-500 transition">Products</a>
+                <a href="#categories" class="block hover:text-orange-500 transition">Categories</a>
+                <a href="#about" class="block hover:text-orange-500 transition">About</a>
+                <a href="#contact" class="block hover:text-orange-500 transition">Contact</a>
+                
+                <div class="pt-4 border-t border-gray-700">
+                    <div class="relative">
+                        <input type="text" placeholder="Search products..." class="w-full px-4 py-2 rounded-full bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-500">
+                        <button class="absolute right-2 top-2 orange-text">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Search Bar (Desktop) -->
+        <div class="hidden md:block orange-bg py-2">
+            <div class="container mx-auto px-4">
+                <div class="relative max-w-2xl mx-auto">
+                    <input id="searchInput" type="text" placeholder="Search laptops, printers, monitors..." class="w-full px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-black">
+                    <button id="searchSubmit" class="absolute right-2 top-2 black-text">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero-section text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Premium IT Solutions for East Africa</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Your trusted partner for laptops, printers, monitors, CCTV cameras and all IT needs at competitive prices</p>
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
+                <a href="#products" class="orange-bg text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Shop Now</a>
+                <a href="#categories" class="bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Browse Categories</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Categories -->
+    <section id="categories" class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">Shop By Category</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <a href="#" class="category-card bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                    <div class="h-32 mb-3 flex items-center justify-center">
+                        <img src="https://images.pexels.com/photos/7974/pexels-photo.jpg" alt="Modern laptops with sleek designs from various brands" class="h-full object-contain" />
+                    </div>
+                    <h3 class="font-medium">Laptops</h3>
+                </a>
+                
+                <a href="#" class="category-card bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                    <div class="h-32 mb-3 flex items-center justify-center">
+                        <img src="https://images.pexels.com/photos/38271/ipad-map-tablet-internet-38271.jpeg" alt="High-definition monitors with thin bezels and adjustable stands" class="h-full object-contain" />
+                    </div>
+                    <h3 class="font-medium">Monitors</h3>
+                </a>
+                
+                <a href="#" class="category-card bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                    <div class="h-32 mb-3 flex items-center justify-center">
+                        <img src="https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg" alt="Modern printers including laser, inkjet and all-in-one models" class="h-full object-contain" />
+                    </div>
+                    <h3 class="font-medium">Printers</h3>
+                </a>
+                
+                <a href="#" class="category-card bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                    <div class="h-32 mb-3 flex items-center justify-center">
+                        <img src="https://images.pexels.com/photos/7369/startup-photos.jpg" alt="Advanced CCTV cameras for home and business security" class="h-full object-contain" />
+                    </div>
+                    <h3 class="font-medium">CCTV Cameras</h3>
+                </a>
+                
+                <a href="#" class="category-card bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                    <div class="h-32 mb-3 flex items-center justify-center">
+                        <img src="https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg" alt="High-performance gaming consoles, PCs and accessories" class="h-full object-contain" />
+                    </div>
+                    <h3 class="font-medium">Gaming Devices</h3>
+                </a>
+                
+                <a href="#" class="category-card bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                    <div class="h-32 mb-3 flex items-center justify-center">
+                        <img src="https://images.pexels.com/photos/2651794/pexels-photo-2651794.jpeg" alt="Document scanners ranging from portable to high-volume models" class="h-full object-contain" />
+                    </div>
+                    <h3 class="font-medium">Scanners</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Products -->
+    <section id="products" class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold">Featured Products</h2>
+                <a href="#" class="orange-text font-medium hover:underline">View All Products →</a>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Product 1 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/51bbb327-edcb-4ed2-a0cd-12fe3c96b99e.png" alt="Premium business laptop with 14-inch Full HD display, Intel Core i7 processor and 16GB RAM" class="w-full h-48 object-cover" />
+                        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">New</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-1">ProBook 14" Business Laptop</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-xs text-gray-500 ml-1">(32)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">KSh 85,999</span>
+                            <button class="add-to-cart bg-gray-200 hover:bg-orange-500 hover:text-white text-orange-500 p-2 rounded-full transition" data-id="1">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/06d82b48-8211-4f5c-b006-067ce6b544ce.png" alt="24-inch Full HD monitor with IPS panel, 75Hz refresh rate and ultra-thin bezel design" class="w-full h-48 object-cover" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-1">UltraView 24" IPS Monitor</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-xs text-gray-500 ml-1">(18)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">KSh 24,499</span>
+                            <button class="add-to-cart bg-gray-200 hover:bg-orange-500 hover:text-white text-orange-500 p-2 rounded-full transition" data-id="2">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a515dc17-84b7-4cc4-b089-26c4247671ca.png" alt="Wireless all-in-one printer with scanner and copier functions, compatible with mobile printing" class="w-full h-48 object-cover" />
+                        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">Best Seller</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-1">MultiTech Wireless Printer</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-xs text-gray-500 ml-1">(47)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">KSh 32,999</span>
+                            <button class="add-to-cart bg-gray-200 hover:bg-orange-500 hover:text-white text-orange-500 p-2 rounded-full transition" data-id="3">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e68220ac-f2e6-4f7a-9ea5-0ee0bc07cbba.png" alt="Gaming laptop with RGB keyboard, NVIDIA RTX graphics and high refresh rate display" class="w-full h-48 object-cover" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-1">Nexus G7 Gaming Laptop</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-xs text-gray-500 ml-1">(29)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">KSh 142,999</span>
+                            <button class="add-to-cart bg-gray-200 hover:bg-orange-500 hover:text-white text-orange-500 p-2 rounded-full transition" data-id="4">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/de02bfff-3dcd-4feb-8199-8e0281df4234.png" alt="High-resolution document scanner with automatic feeder and OCR software included" class="w-full h-48 object-cover" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-1">DocScan Pro HD</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-xs text-gray-500 ml-1">(14)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">KSh 38,499</span>
+                            <button class="add-to-cart bg-gray-200 hover:bg-orange-500 hover:text-white text-orange-500 p-2 rounded-full transition" data-id="5">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a754d416-0e0b-4dff-83df-dafd5b5dfd21.png" alt="4K IP CCTV camera with night vision and motion detection for home security" class="w-full h-48 object-cover" />
+                        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">Limited Stock</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-1">SecureEye 4K CCTV Camera</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-xs text-gray-500 ml-1">(8)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">KSh 12,999</span>
+                            <button class="add-to-cart bg-gray-200 hover:bg-orange-500 hover:text-white text-orange-500 p-2 rounded-full transition" data-id="6">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 7 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cb454b19-978f-466a-bd70-0894dbba65d9.png" alt="Wireless ergonomic mouse with programmable buttons and long battery life" class="w-full h-48 object-cover" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-1">ErgoWireless Mouse</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-xs text-gray-500 ml-1">(27)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">KSh 3,499</span>
+                            <button class="add-to-cart bg-gray-200 hover:bg-orange-500 hover:text-white text-orange-500 p-2 rounded-full transition" data-id="7">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 8 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2ac304d3-0f45-4db7-8d41-3a1f336adfda.png" alt="Professional noise-cancelling headphones with built-in microphone for calls and music" class="w-full h-48 object-cover" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-1">AudioPro NC Headphones</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-xs text-gray-500 ml-1">(12)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">KSh 8,999</span>
+                            <button class="add-to-cart bg-gray-200 hover:bg-orange-500 hover:text-white text-orange-500 p-2 rounded-full transition" data-id="8">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center">Why Choose Belika East Africa</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                    <div class="orange-text text-4xl mb-4">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Genuine Products</h3>
+                    <p class="text-gray-600">All our products are sourced directly from manufacturers and authorized distributors.</p>
+                </div>
+                
+                <div class="feature-card bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                    <div class="orange-text text-4xl mb-4">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Fast Delivery</h3>
+                    <p class="text-gray-600">Same day dispatch in Nairobi, with reliable delivery across East Africa.</p>
+                </div>
+                
+                <div class="feature-card bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                    <div class="orange-text text-4xl mb-4">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Dedicated Support</h3>
+                    <p class="text-gray-600">Our technical team is available 24/7 to assist with any product inquiries.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Cart Modal -->
+    <div id="cartModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50">
+        <div class="absolute right-0 top-0 bottom-0 w-full sm:w-96 bg-white shadow-xl overflow-y-auto">
+            <div class="p-4 flex justify-between items-center border-b">
+                <h3 class="text-xl font-bold">Your Shopping Cart</h3>
+                <button id="closeCartBtn" class="text-gray-500 hover:text-black">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="cartItems" class="divide-y divide-gray-200">
+                <!-- Cart items will be added here dynamically -->
+                <div class="empty-cart text-center py-12">
+                    <i class="fas fa-shopping-cart text-4xl text-gray-300 mb-4"></i>
+                    <p class="text-gray-500">Your cart is empty</p>
+                </div>
+            </div>
+            
+            <div class="p-4 border-t">
+                <div class="flex justify-between mb-4">
+                    <span class="font-bold">Subtotal:</span>
+                    <span id="cartSubtotal" class="font-bold">KSh 0</span>
+                </div>
+                <button id="checkoutBtn" class="w-full orange-bg text-white py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Proceed to Checkout</button>
+                <p class="text-xs text-gray-500 mt-2 text-center">WhatsApp orders: <span class="font-medium">+254 700 123 456</span></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="black-bg text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="footer-col">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-laptop-code text-2xl orange-text"></i>
+                        <span class="font-bold text-lg">BELIKA EAST AFRICA</span>
+                    </div>
+                    <p class="text-gray-400">Your trusted partner for all IT solutions in East Africa since 2015.</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white hover:underline">Home</a></li>
+                        <li><a href="#products" class="text-gray-400 hover:text-white hover:underline">Products</a></li>
+                        <li><a href="#categories" class="text-gray-400 hover:text-white hover:underline">Categories</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white hover:underline">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white hover:underline">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="font-bold mb-4">Customer Service</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white hover:underline">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white hover:underline">Shipping Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white hover:underline">Returns & Warranty</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white hover:underline">Track Order</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white hover:underline">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div id="contact" class="footer-col">
+                    <h4 class="font-bold mb-4">Contact Us</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt orange-text mr-2"></i>
+                            <span class="text-gray-400">Nairobi Business Park, Building 5</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone orange-text mr-2"></i>
+                            <span class="text-gray-400">+254 700 123 456</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope orange-text mr-2"></i>
+                            <span class="text-gray-400">info@belika.co.ke</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock orange-text mr-2"></i>
+                            <span class="text-gray-400">Mon-Fri: 8AM - 6PM, Sat: 9AM - 4PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Belika East Africa. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Sample product data
+        const products = {
+            1: { name: "ProBook 14\" Business Laptop", price: 85999, image: "https://images.pexels.com/photos/7974/pexels-photo.jpg" },
+            2: { name: "UltraView 24\" IPS Monitor", price: 24499, image: "https://images.pexels.com/photos/38271/ipad-map-tablet-internet-38271.jpeg" },
+            3: { name: "MultiTech Wireless Printer", price: 32999, image: "https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg" },
+            4: { name: "Nexus G7 Gaming Laptop", price: 142999, image: "https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg" },
+            5: { name: "DocScan Pro HD", price: 38499, image: "https://images.pexels.com/photos/2651794/pexels-photo-2651794.jpeg" },
+            6: { name: "SecureEye 4K CCTV Camera", price: 12999, image: "https://images.pexels.com/photos/7369/startup-photos.jpg" },
+            7: { name: "ErgoWireless Mouse", price: 3499, image: "https://images.pexels.com/photos/2847973/pexels-photo-2847973.jpeg" },
+            8: { name: "AudioPro NC Headphones", price: 8999, image: "https://images.pexels.com/photos/3394663/pexels-photo-3394663.jpeg" }
+        };
+        
+        // DOM Elements
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const cartBtn = document.getElementById('cartBtn');
+        const cartModal = document.getElementById('cartModal');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartItems = document.getElementById('cartItems');
+        const cartSubtotal = document.getElementById('cartSubtotal');
+        const cartCount = document.getElementById('cartCount');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const searchBtn = document.getElementById('searchBtn');
+        const searchSubmit = document.getElementById('searchSubmit');
+        const searchInput = document.getElementById('searchInput');
+        
+        // Cart state
+        let cart = [];
+        
+        // Toggle mobile menu
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+        
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+        
+        // Toggle cart modal
+        cartBtn.addEventListener('click', () => {
+            cartModal.classList.remove('hidden');
+        });
+        
+        closeCartBtn.addEventListener('click', () => {
+            cartModal.classList.add('hidden');
+        });
+        
+        // Close cart modal when clicking outside
+        cartModal.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.classList.add('hidden');
+            }
+        });
+        
+        // Add to cart functionality
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const productId = button.getAttribute('data-id');
+                addToCart(productId);
+                
+                // Show added animation
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-plus"></i>';
+                }, 1000);
+            });
+        });
+        
+        function addToCart(productId) {
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: productId,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            
+            // Show cart modal when adding first item
+            if (cart.length === 1) {
+                cartModal.classList.remove('hidden');
+            }
+        }
+        
+        function updateCart() {
+            // Update cart count
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update cart items
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart text-center py-12">
+                        <i class="fas fa-shopping-cart text-4xl text-gray-300 mb-4"></i>
+                        <p class="text-gray-500">Your cart is empty</p>
+                    </div>
+                `;
+                cartSubtotal.textContent = 'KSh 0';
+                return;
+            }
+            
+            let itemsHTML = '';
+            let subtotal = 0;
+            
+            cart.forEach(item => {
+                const product = products[item.id];
+                const itemTotal = product.price * item.quantity;
+                subtotal += itemTotal;
+                
+                itemsHTML += `
+                    <div class="cart-item p-4 flex items-center">
+                        <div class="flex-shrink-0 h-16 w-16 overflow-hidden rounded-md">
+                            <img src="${product.image}" alt="${product.name}" class="h-full w-full object-cover">
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <div class="flex justify-between">
+                                <h4 class="font-medium">${product.name}</h4>
+                                <span class="font-medium">KSh ${product.price.toLocaleString()}</span>
+                            </div>
+                            <div class="flex items-center mt-2">
+                                <button class="decrease-quantity text-gray-500 hover:text-orange-500" data-id="${item.id}">
+                                    <i class="fas fa-minus-circle"></i>
+                                </button>
+                                <span class="mx-2">${item.quantity}</span>
+                                <button class="increase-quantity text-gray-500 hover:text-orange-500" data-id="${item.id}">
+                                    <i class="fas fa-plus-circle"></i>
+                                </button>
+                                <button class="remove-item ml-4 text-gray-500 hover:text-red-500" data-id="${item.id}">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            cartItems.innerHTML = itemsHTML;
+            cartSubtotal.textContent = `KSh ${subtotal.toLocaleString()}`;
+            
+            // Add event listeners to new buttons
+            document.querySelectorAll('.decrease-quantity').forEach(button => {
+                button.addEventListener('click', () => {
+                    const productId = button.getAttribute('data-id');
+                    updateQuantity(productId, -1);
+                });
+            });
+            
+            document.querySelectorAll('.increase-quantity').forEach(button => {
+                button.addEventListener('click', () => {
+                    const productId = button.getAttribute('data-id');
+                    updateQuantity(productId, 1);
+                });
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', () => {
+                    const productId = button.getAttribute('data-id');
+                    removeFromCart(productId);
+                });
+            });
+        }
+        
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            
+            if (item) {
+                item.quantity += change;
+                
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCart();
+                }
+            }
+        }
+        
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+        
+        // Checkout functionality
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) return;
+            
+            // Generate WhatsApp message
+            let message = "Hello Belika East Africa! I'd like to order the following items:\n\n";
+            
+            cart.forEach(item => {
+                const product = products[item.id];
+                message += `${product.name} - ${item.quantity} x KSh ${product.price.toLocaleString()} = KSh ${(product.price * item.quantity).toLocaleString()}\n`;
+            });
+            
+            const subtotal = cart.reduce((total, item) => total + (products[item.id].price * item.quantity), 0);
+            message += `\nTotal: KSh ${subtotal.toLocaleString()}\n\nMy details:\nName: \nPhone: \nDelivery Address: `;
+            
+            const whatsappURL = `https://wa.me/0734744206?text=${encodeURIComponent(message)}`;
+            
+            // Open WhatsApp
+            window.open(whatsappURL, '_blank');
+            
+            // Optional: Clear cart after checkout
+            // cart = [];
+            // updateCart();
+            // cartModal.classList.add('hidden');
+        });
+        
+        // Search functionality
+        if (searchSubmit) {
+            searchSubmit.addEventListener('click', () => {
+                performSearch();
+            });
+        }
+        
+        if (searchInput) {
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        }
+        
+        function performSearch() {
+            const query = searchInput.value.trim();
+            if (query) {
+                alert(`Searching for: ${query}\nThis would normally filter products in a real implementation.`);
+            }
+        }
+        
+        // Initialize cart
+        updateCart();
+        
+        // Load sample cart items for demo (remove in production)
+        // addToCart('1');
+        // addToCart('3');
+    </script>
+</body>
+</html>
+```
