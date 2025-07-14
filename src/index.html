@@ -83,7 +83,6 @@
             </div>
             
             <div class="hidden md:flex space-x-6">
-                <a href="#" class="hover:text-orange-500 transition">Home</a>
                 <a href="#products" class="hover:text-orange-500 transition">Products</a>
                 <a href="#categories" class="hover:text-orange-500 transition">Categories</a>
                 <a href="#about" class="hover:text-orange-500 transition">About</a>
@@ -111,7 +110,6 @@
             </button>
             
             <div class="mt-12 space-y-6">
-                <a href="#" class="block hover:text-orange-500 transition">Home</a>
                 <a href="#products" class="block hover:text-orange-500 transition">Products</a>
                 <a href="#categories" class="block hover:text-orange-500 transition">Categories</a>
                 <a href="#about" class="block hover:text-orange-500 transition">About</a>
@@ -266,6 +264,43 @@
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-3xl font-bold">Featured Products</h2>
                 <a href="#" class="orange-text font-medium hover:underline">View All Products →</a>
+            </div>
+            <div>
+                
+                <div class="relative bg-black py-2 overflow-hidden">
+                    <div class="marquee-container whitespace-nowrap animate-marquee">
+                        <span class="inline-block text-orange-500 font-semibold px-4">DELL</span>
+                        <span class="inline-block text-white font-semibold px-4">|</span>
+                        <span class="inline-block text-orange-500 font-semibold px-4">LENOVO</span>
+                        <span class="inline-block text-white font-semibold px-4">|</span>
+                        <span class="inline-block text-orange-500 font-semibold px-4">EPSON</span>
+                        <span class="inline-block text-white font-semibold px-4">|</span>
+                        <span class="inline-block text-orange-500 font-semibold px-4">HP</span>
+                        <span class="inline-block text-white font-semibold px-4">|</span>
+                        <span class="inline-block text-orange-500 font-semibold px-4">CANON</span>
+                        <span class="inline-block text-white font-semibold px-4">|</span>
+                        <span class="inline-block text-orange-500 font-semibold px-4">TOSHIBA</span>
+                        <span class="inline-block text-white font-semibold px-4">|</span>
+                        <span class="inline-block text-orange-500 font-semibold px-4">PANASONIC</span>
+
+                    </div>
+                </div>
+                
+                <style>
+                @keyframes marquee {
+                    0% { transform: translateX(100%); }
+                    100% { transform: translateX(-100%); }
+                }
+                
+                .animate-marquee {
+                    animation: marquee 20s linear infinite;
+                }
+                
+                .marquee-container {
+                    display: inline-block;
+                }
+                </style>
+                
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -482,7 +517,20 @@
             </div>
         </div>
     </section>
-    
+    <div>
+
+                <div class="footer-col">
+
+                    <h4 class="font-bold mb-4 text-md animate-pulse bg-gradient-to-r from-orange-500 to-black text-transparent bg-clip-text animate-blink">Limited Offers</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/products-under-80k" class="text-gray-400 hover:text-white hover:bg-orange-600 px-3 py-1 rounded-md inline-block">Products Under 80K</a></li>
+                        <li><a href="/products-under-50k" class="text-gray-400 hover:text-white hover:bg-orange-600 px-3 py-1 rounded-md inline-block">Products Under 50K</a></li>
+                        <li><a href="/products-under-40k" class="text-gray-400 hover:text-white hover:bg-orange-600 px-3 py-1 rounded-md inline-block">Products Under 40K</a></li>
+                        <li><a href="/products-under-30k" class="text-gray-400 hover:text-white hover:bg-orange-600 px-3 py-1 rounded-md inline-block">Products Under 30K</a></li>
+                    </ul>
+                </div>
+
+
     <!-- Features Section -->
     <section class="py-12 bg-gray-100">
         <div class="container mx-auto px-4">
@@ -540,8 +588,71 @@
                     <span class="font-bold">Subtotal:</span>
                     <span id="cartSubtotal" class="font-bold">KSh 0</span>
                 </div>
-                <button id="checkoutBtn" class="w-full orange-bg text-white py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Proceed to Checkout</button>
-                <p class="text-xs text-gray-500 mt-2 text-center">WhatsApp orders: <span class="font-medium">+254 700 123 456</span></p>
+
+                <!-- Coupon Code Section -->
+                <div class="mb-4">
+                    <div class="flex space-x-2">
+                        <input type="text" id="couponCode" placeholder="Enter Coupon Code" class="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
+                        <button id="applyCoupon" class="orange-bg text-white px-4 py-2 rounded-lg hover:bg-opacity-90">Apply</button>
+                    </div>
+                </div>
+
+                <!-- Customer Details -->
+                <div class="mb-4 space-y-3">
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1">Full Name</label>
+                        <input type="text" id="customerName" placeholder="Enter your full name" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1">Delivery Address</label>
+                        <textarea id="deliveryAddress" placeholder="Enter your delivery address" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" rows="2"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1">Location/Area</label>
+                        <input type="text" id="location" placeholder="Enter your location" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    </div>
+                </div>
+
+                <!-- Payment Method Selection -->
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-600 mb-2">Payment Method</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" name="paymentMethod" value="mpesa" class="text-orange-500">
+                            <span>M-PESA</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" name="paymentMethod" value="cod" class="text-orange-500">
+                            <span>Cash on Delivery</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- M-PESA Payment Integration -->
+
+                <div id="mpesaSection" class="mb-4">
+                    <h4 class="font-bold mb-2">M-PESA Payment</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-sm text-gray-600 mb-1">M-PESA Phone Number</label>
+                            <input type="tel" id="mpesaPhone" placeholder="254700000000" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-600 mb-1">M-PESA PIN</label>
+                            <input type="password" id="mpesaPin" placeholder="Enter M-PESA PIN" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
+                        </div>
+                        <div id="mpesaConfirmation" class="hidden bg-gray-100 p-3 rounded-lg">
+                            <p class="text-sm text-gray-700">You will receive a prompt on your phone <span id="displayPhone" class="font-bold"></span> to authorize payment of <span id="displayAmount" class="font-bold"></span> via M-PESA. Please enter your PIN to complete the transaction.</p>
+                            <div class="flex justify-between mt-2">
+                                <button id="confirmMpesa" class="text-green-600 hover:text-green-700 font-medium">Confirm</button>
+                                <button id="cancelMpesa" class="text-red-600 hover:text-red-700 font-medium">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="payWithMpesa" class="w-full orange-bg text-white py-3 rounded-lg font-medium hover:bg-opacity-90 transition mb-2">Pay with M-PESA</button>
+                <button id="checkoutBtn" class="w-full bg-gray-200 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-300 transition">Other Payment Methods</button>
+                <p class="text-xs text-gray-500 mt-2 text-center">WhatsApp orders: <span class="font-medium">0734744206</span></p>
             </div>
         </div>
     </div>
@@ -565,17 +676,6 @@
                 </div>
                 
                 <div class="footer-col">
-                    <h4 class="font-bold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white hover:underline">Home</a></li>
-                        <li><a href="#products" class="text-gray-400 hover:text-white hover:underline">Products</a></li>
-                        <li><a href="#categories" class="text-gray-400 hover:text-white hover:underline">Categories</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white hover:underline">About Us</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white hover:underline">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
                     <h4 class="font-bold mb-4">Customer Service</h4>
                     <ul class="space-y-2">
                         <li><a href="#" class="text-gray-400 hover:text-white hover:underline">FAQs</a></li>
@@ -595,11 +695,11 @@
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-phone orange-text mr-2"></i>
-                            <span class="text-gray-400">+254 700 123 456</span>
+                            <span class="text-gray-400">0734744206</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-envelope orange-text mr-2"></i>
-                            <span class="text-gray-400">info@belika.co.ke</span>
+                            <span class="text-gray-400">sales@belikaeastafrica.co.ke</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-clock orange-text mr-2"></i>
