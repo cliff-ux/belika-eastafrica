@@ -127,18 +127,102 @@
         </div>
         
         <!-- Search Bar (Desktop) -->
-        <div class="hidden md:block orange-bg py-2">
-            <div class="container mx-auto px-4">
+            <div class="hidden md:block orange-bg py-2">
+                <div class="container mx-auto px-4">
                 <div class="relative max-w-2xl mx-auto">
                     <input id="searchInput" type="text" placeholder="Search laptops, printers, monitors..." class="w-full px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-black">
                     <button id="searchSubmit" class="absolute right-2 top-2 black-text">
-                        <i class="fas fa-search"></i>
+                    <i class="fas fa-search"></i>
                     </button>
                 </div>
+                </div>
             </div>
-        </div>
-    </nav>
-    
+            </nav>
+            <script>
+            // Enhanced search functionality
+            const searchInput = document.getElementById('searchInput');
+            const searchSubmit = document.getElementById('searchSubmit');
+            const productsSection = document.getElementById('products');
+            
+            function normalize(str) {
+                return str.toLowerCase().replace(/[^a-z0-9]+/g, '');
+            }
+            
+            function performSearch() {
+                const query = searchInput.value.trim().toLowerCase();
+                if (!query) return;
+                
+                // Find all product cards
+                const cards = document.querySelectorAll('.product-card');
+                let found = false;
+                let firstMatchedCard = null;
+                
+                cards.forEach(card => {
+                    const name = card.querySelector('h3').textContent.toLowerCase();
+                    const description = card.querySelector('.product-description')?.textContent.toLowerCase() || '';
+                    const category = card.getAttribute('data-category')?.toLowerCase() || '';
+                    
+                    // Show if query matches product name, description, or category
+                    if (
+                        name.includes(query) ||
+                        description.includes(query) ||
+                        category.includes(query) ||
+                        (query.includes('laptop') && (name.includes('laptop') || category === 'laptops')) ||
+                        (query.includes('printer') && (name.includes('printer') || category === 'printers')) ||
+                        (query.includes('monitor') && (name.includes('monitor') || category === 'monitors')) ||
+                        (query.includes('scanner') && (name.includes('scan') || category === 'scanners')) ||
+                        (query.includes('cctv') && (name.includes('cctv') || name.includes('camera') || category === 'security')) ||
+                        (query.includes('mouse') && (name.includes('mouse') || category === 'accessories')) ||
+                        (query.includes('headphone') && (name.includes('headphone') || category === 'accessories')) ||
+                        (query.includes('gaming') && (name.includes('gaming') || category === 'gaming'))
+                    ) {
+                        card.style.display = '';
+                        found = true;
+                        if (!firstMatchedCard) {
+                            firstMatchedCard = card;
+                        }
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Scroll to first matched product if found
+                if (firstMatchedCard) {
+                    firstMatchedCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else if (productsSection) {
+                    // If no specific product found but products section exists, scroll there
+                    productsSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Show message if nothing found
+                if (!found) {
+                    alert('No products found for: ' + query + '\nTry searching for specific categories like laptops, printers, monitors, etc.');
+                }
+            }
+            
+            if (searchSubmit) {
+                searchSubmit.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    performSearch();
+                });
+            }
+            
+            if (searchInput) {
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        performSearch();
+                    }
+                });
+                
+                // Add real-time search as user types
+                searchInput.addEventListener('input', () => {
+                    if (searchInput.value.length >= 2) {
+                        performSearch();
+                    }
+                });
+            }
+            </script>
     <!-- Hero Section -->
     <section class="hero-section text-white py-20">
         <div class="container mx-auto px-4 text-center">
@@ -629,7 +713,6 @@
                 </div>
 
                 <!-- M-PESA Payment Integration -->
-
                 <div id="mpesaSection" class="mb-4">
                     <h4 class="font-bold mb-2">M-PESA Payment</h4>
                     <div class="space-y-3">
@@ -958,6 +1041,10 @@
         // addToCart('1');
         // addToCart('3');
     </script>
+    <script>
+
+    </script>
 </body>
 </html>
-```
+
+

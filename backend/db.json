@@ -1,0 +1,28 @@
+   {
+     "products": [
+       {
+         "id": 1,
+         "name": "ProBook 14\" Business Laptop",
+         "price": 85999,
+         "image": "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/51bbb327-edcb-4ed2-a0cd-12fe3c96b99e.png",
+         "description": "Premium business laptop with 14-inch Full HD display, Intel Core i7 processor and 16GB RAM"
+       }
+     ],
+     "services": [
+       {
+         "id": 1,
+         "name": "Custom Software",
+         "description": "Tailored solutions designed specifically for your business needs and workflows."
+       }
+     ],
+     "testimonials": [
+       {
+         "id": 1,
+         "name": "Sarah K.",
+         "position": "Nairobi Bank",
+         "testimonial": "The custom banking solution Belika developed has transformed our customer service and reduced processing times by 40%.",
+         "image": "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/74b97d72-19d6-4ce1-b508-67294bad635b.png"
+       }
+     ]
+   }
+   
