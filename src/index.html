@@ -144,6 +144,11 @@
             const searchSubmit = document.getElementById('searchSubmit');
             const productsSection = document.getElementById('products');
             
+            // Set search input text color to black
+            if (searchInput) {
+                searchInput.style.color = 'black';
+            }
+            
             function normalize(str) {
                 return str.toLowerCase().replace(/[^a-z0-9]+/g, '');
             }
