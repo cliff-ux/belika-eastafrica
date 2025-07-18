@@ -85,7 +85,8 @@
             <div class="hidden md:flex space-x-6">
                 <a href="#products" class="hover:text-orange-500 transition">Products</a>
                 <a href="#categories" class="hover:text-orange-500 transition">Categories</a>
-                <a href="#about" class="hover:text-orange-500 transition">About</a>
+                <button onclick="window.location.href='about.html'" class="hover:text-orange-500 transition" aria-label="Learn more about Belika East Africa">About Us</button>
+                
                 <a href="#contact" class="hover:text-orange-500 transition">Contact</a>
             </div>
             
@@ -125,13 +126,12 @@
                 </div>
             </div>
         </div>
-        
         <!-- Search Bar (Desktop) -->
             <div class="hidden md:block orange-bg py-2">
                 <div class="container mx-auto px-4">
                 <div class="relative max-w-2xl mx-auto">
-                    <input id="searchInput" type="text" placeholder="Search laptops, printers, monitors..." class="w-full px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-black">
-                    <button id="searchSubmit" class="absolute right-2 top-2 black-text">
+                    <input id="searchInput" type="text" placeholder="Search laptops, printers, monitors..." class="w-full px-4 py-2 rounded-full bg-black text-white focus:outline-none focus:ring-2 focus:ring-black" style="color: white;">
+                    <button id="searchSubmit" class="absolute right-2 top-2 text-white">
                     <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -144,64 +144,59 @@
             const searchSubmit = document.getElementById('searchSubmit');
             const productsSection = document.getElementById('products');
             
-            // Set search input text color to black
-            if (searchInput) {
-                searchInput.style.color = 'black';
-            }
-            
             function normalize(str) {
                 return str.toLowerCase().replace(/[^a-z0-9]+/g, '');
             }
             
             function performSearch() {
                 const query = searchInput.value.trim().toLowerCase();
-                if (!query) return;
+                if (!query) {
+                    alert('Please enter a product to search');
+                    return;
+                }
                 
                 // Find all product cards
                 const cards = document.querySelectorAll('.product-card');
                 let found = false;
-                let firstMatchedCard = null;
+                let availableProducts = [];
                 
                 cards.forEach(card => {
                     const name = card.querySelector('h3').textContent.toLowerCase();
-                    const description = card.querySelector('.product-description')?.textContent.toLowerCase() || '';
-                    const category = card.getAttribute('data-category')?.toLowerCase() || '';
+                    const isAvailable = card.getAttribute('data-available') !== 'false';
                     
-                    // Show if query matches product name, description, or category
+                    // Show if query matches product name or common category keywords
                     if (
                         name.includes(query) ||
-                        description.includes(query) ||
-                        category.includes(query) ||
-                        (query.includes('laptop') && (name.includes('laptop') || category === 'laptops')) ||
-                        (query.includes('printer') && (name.includes('printer') || category === 'printers')) ||
-                        (query.includes('monitor') && (name.includes('monitor') || category === 'monitors')) ||
-                        (query.includes('scanner') && (name.includes('scan') || category === 'scanners')) ||
-                        (query.includes('cctv') && (name.includes('cctv') || name.includes('camera') || category === 'security')) ||
-                        (query.includes('mouse') && (name.includes('mouse') || category === 'accessories')) ||
-                        (query.includes('headphone') && (name.includes('headphone') || category === 'accessories')) ||
-                        (query.includes('gaming') && (name.includes('gaming') || category === 'gaming'))
+                        (query.includes('laptop') && name.includes('laptop')) ||
+                        (query.includes('printer') && name.includes('printer')) ||
+                        (query.includes('monitor') && name.includes('monitor')) ||
+                        (query.includes('scanner') && name.includes('scan')) ||
+                        (query.includes('cctv') && (name.includes('cctv') || name.includes('camera'))) ||
+                        (query.includes('mouse') && name.includes('mouse')) ||
+                        (query.includes('headphone') && name.includes('headphone')) ||
+                        (query.includes('gaming') && name.includes('gaming'))
                     ) {
-                        card.style.display = '';
-                        found = true;
-                        if (!firstMatchedCard) {
-                            firstMatchedCard = card;
+                        if (isAvailable) {
+                            card.style.display = '';
+                            availableProducts.push(name);
+                            found = true;
+                        } else {
+                            card.style.display = 'none';
                         }
                     } else {
                         card.style.display = 'none';
                     }
                 });
                 
-                // Scroll to first matched product if found
-                if (firstMatchedCard) {
-                    firstMatchedCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                } else if (productsSection) {
-                    // If no specific product found but products section exists, scroll there
+                // Scroll to products section if any found
+                if (found && productsSection) {
                     productsSection.scrollIntoView({ behavior: 'smooth' });
+                    alert('Found the following products: ' + availableProducts.join(', '));
                 }
                 
-                // Show message if nothing found
+                // Show message for unavailable products
                 if (!found) {
-                    alert('No products found for: ' + query + '\nTry searching for specific categories like laptops, printers, monitors, etc.');
+                    alert('Sorry, the product "' + query + '" is currently not available in our inventory. Please try searching for different products or contact us for more information.');
                 }
             }
             
@@ -216,13 +211,6 @@
                 searchInput.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') {
                         e.preventDefault();
-                        performSearch();
-                    }
-                });
-                
-                // Add real-time search as user types
-                searchInput.addEventListener('input', () => {
-                    if (searchInput.value.length >= 2) {
                         performSearch();
                     }
                 });
@@ -665,7 +653,25 @@
             </div>
             
             <div id="cartItems" class="divide-y divide-gray-200">
-                <!-- Cart items will be added here dynamically -->
+                <!-- Cart items will be dynamically populated -->
+                <template id="cartItemTemplate">
+                    <div class="cart-item p-4 flex items-center">
+                        <img class="w-20 h-20 object-cover rounded" src="" alt="">
+                        <div class="ml-4 flex-1">
+                            <h4 class="font-medium"></h4>
+                            <p class="text-gray-600"></p>
+                            <div class="flex items-center mt-2">
+                                <button class="quantity-decrease px-2 py-1 border rounded">-</button>
+                                <span class="quantity mx-2">1</span>
+                                <button class="quantity-increase px-2 py-1 border rounded">+</button>
+                                <button class="remove-item ml-4 text-red-500"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <span class="item-price font-bold"></span>
+                        </div>
+                    </div>
+                </template>
                 <div class="empty-cart text-center py-12">
                     <i class="fas fa-shopping-cart text-4xl text-gray-300 mb-4"></i>
                     <p class="text-gray-500">Your cart is empty</p>
@@ -744,6 +750,100 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Cart functionality
+        let cart = [];
+        const cartItems = document.getElementById('cartItems');
+        const cartSubtotal = document.getElementById('cartSubtotal');
+        const cartItemTemplate = document.getElementById('cartItemTemplate');
+        const emptyCart = document.querySelector('.empty-cart');
+
+        function addToCart(product) {
+            const existingItem = cart.find(item => item.id === product.id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+                updateCartDisplay();
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+                updateCartDisplay();
+            }
+        }
+
+        function updateCartDisplay() {
+            if (cart.length === 0) {
+                emptyCart.classList.remove('hidden');
+                return;
+            }
+
+            emptyCart.classList.add('hidden');
+            cartItems.innerHTML = '';
+
+            let subtotal = 0;
+            cart.forEach(item => {
+                const itemElement = cartItemTemplate.content.cloneNode(true);
+                
+                const img = itemElement.querySelector('img');
+                img.src = item.image;
+                img.alt = item.name;
+
+                itemElement.querySelector('h4').textContent = item.name;
+                itemElement.querySelector('.quantity').textContent = item.quantity;
+                itemElement.querySelector('.item-price').textContent = `KSh ${(item.price * item.quantity).toLocaleString()}`;
+
+                const decreaseBtn = itemElement.querySelector('.quantity-decrease');
+                const increaseBtn = itemElement.querySelector('.quantity-increase');
+                const removeBtn = itemElement.querySelector('.remove-item');
+
+                decreaseBtn.onclick = () => updateItemQuantity(item.id, -1);
+                increaseBtn.onclick = () => updateItemQuantity(item.id, 1);
+                removeBtn.onclick = () => removeFromCart(item.id);
+
+                subtotal += item.price * item.quantity;
+                cartItems.appendChild(itemElement);
+            });
+
+            cartSubtotal.textContent = `KSh ${subtotal.toLocaleString()}`;
+        }
+
+        function updateItemQuantity(itemId, change) {
+            const item = cart.find(item => item.id === itemId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(itemId);
+                } else {
+                    updateCartDisplay();
+                }
+            }
+        }
+
+        function removeFromCart(itemId) {
+            cart = cart.filter(item => item.id !== itemId);
+            updateCartDisplay();
+        }
+
+        // Add click event listeners to all add-to-cart buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const productCard = e.target.closest('.product-card');
+                const product = {
+                    id: productCard.dataset.productId,
+                    name: productCard.querySelector('h3').textContent,
+                    price: parseFloat(productCard.dataset.price),
+                    image: productCard.querySelector('img').src
+                };
+                addToCart(product);
+            });
+        });
+    </script>
     
     <!-- Footer -->
     <footer class="black-bg text-white py-8">
@@ -814,6 +914,7 @@
             6: { name: "SecureEye 4K CCTV Camera", price: 12999, image: "https://images.pexels.com/photos/7369/startup-photos.jpg" },
             7: { name: "ErgoWireless Mouse", price: 3499, image: "https://images.pexels.com/photos/2847973/pexels-photo-2847973.jpeg" },
             8: { name: "AudioPro NC Headphones", price: 8999, image: "https://images.pexels.com/photos/3394663/pexels-photo-3394663.jpeg" }
+
         };
         
         // DOM Elements
@@ -1010,6 +1111,7 @@
             
             // Open WhatsApp
             window.open(whatsappURL, '_blank');
+
             
             // Optional: Clear cart after checkout
             // cart = [];

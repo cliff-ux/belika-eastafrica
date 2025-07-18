@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Belika East Africa Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+            color: #111827;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #000000 0%, #f97316 100%);
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            color: #f97316;
+        }
+        
+        .btn-primary {
+            background-color: #f97316;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #ea580c;
+        }
+        
+        .btn-secondary {
+            border: 2px solid #f97316;
+            color: #f97316;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f97316;
+            color: white;
+        }
+        
+        .accent-line {
+            background-color: #f97316;
+        }
+        
+        .footer-bg {
+            background-color: #1f2937;
+        }
+        
+        /* Image styles */
+        .img-placeholder {
+            background-color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 14px;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="gradient-bg text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Belika East Africa Solutions</h1>
+                    <p class="text-xl mb-8">Your trusted partner for premium IT equipment and technology solutions across East Africa</p>
+                    <a href="#contact" class="btn-primary px-8 py-3 rounded-lg font-medium hover:bg-orange-700 transition duration-300 inline-block">Contact Us</a>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://placehold.co/600x400/1f2937/f97316?text=Modern+Tech+Showroom" 
+                         alt="Belika East Africa's technology showroom showcasing enterprise servers, networking equipment and professional IT solutions in Nairobi"
+                         class="rounded-lg shadow-2xl" />
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Us Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Who We Are</h2>
+                <div class="accent-line w-24 h-1 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center mb-16">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h3 class="text-2xl font-semibold mb-4">Our Story</h3>
+                    <p class="text-gray-600 mb-6">
+                        Founded in 2015, Belika East Africa Solutions began as a small IT equipment supplier in Nairobi with a vision to transform technology access across East Africa. What started as a modest operation has grown into one of the region's most trusted technology solution providers.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Over the years, we've established partnerships with global technology leaders and built a reputation for reliability, exceptional customer service, and deep technical expertise. Our journey reflects the rapid technological advancement of East Africa itself.
+                    </p>
+                </div>
+                <div class="md:w-极 2 md:pl-12">
+                    <img src="https://placehold.co/600x400/1f2937/f97316?text=Corporate+HQ+Nairobi" 
+                         alt="Belika East African Solutions headquarters building in Nairobi with modern glass facade and company branding"
+                         class="rounded-lg shadow-lg" />
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 order-2 md:order-1 md:pr-12 mt-10 md:mt-0">
+                    <img src="https://placehold.co/600x400/1f2937/f97316?text=Tech+Warehouse" 
+                         alt="Interior of Belika's warehouse facility showing technicians configuring enterprise IT equipment with modern rack systems"
+                         class="rounded-lg shadow-lg" />
+                </div>
+                <div class="md:w-1/2 order-1 md:order-2 mb-10 md:mb-0">
+                    <h3 class="text-2xl font-semibold mb-4">Our Mission</h3>
+                    <p class="text-gray-极 mb-6">
+                        To empower businesses, organizations, and institutions across East Africa with premium IT infrastructure solutions that drive digital transformation, innovation, and sustainable growth in an increasingly connected world.
+                    </p>
+                    <h3 class="text-2xl font-semibold mb-4">Our Vision</h3>
+                    <p class="text-gray-600">
+                        To be the leading IT solutions provider in East Africa, recognized for exceptional quality, unparalleled technical expertise, and our commitment to fueling Africa's digital revolution through accessible, reliable technology.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Our Core Values</h2>
+                <div class="accent-line w-24 h-1 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Innovation</h3>
+                    <p class="text-gray-600">
+                        We constantly explore cutting-edge solutions to keep our clients at the forefront of technology adoption in Africa's fast-evolving digital landscape.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-orange-600" fill="none" viewBox="0 极 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Integrity</h3>
+                    <p class="text-gray-600">
+                        We build trust through transparency, ethical business practices, and delivering exactly what we promise with no hidden costs or conditions.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semib极 mb-4">Customer Focus</h3>
+                    <p class="text-gray-600">
+                        Every solution we provide is tailored to our clients' specific needs, supported by personalized service and long-term partnerships.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Our IT Equipment Solutions</h2>
+                <div class="accent-line w-24 h-1 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:极 lds-3 gap-8">
+                <div class="service-card bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                    <div class="service-icon w-16 h-16 bg-orange⏭000 rounded-full flex items-center justify-center mb-6 text-orange-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Enterprise Hardware</h3>
+                    <img src="https://placehold.co/400x250/1f2937/f97316?text=Enterprise+Servers" 
+                         alt="Rack of enterprise servers with blinking lights in a modern data center environment"
+                         class="mb-4 rounded-lg" />
+                    <p class="text-gray-600 mb-4">
+                        Servers, storage solutions, workstations, and enterprise-grade computing infrastructure from leading global brands tailored to your operational needs.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">Dell EMC</span>
+                        <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">HP Enterprise</span>
+                        <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">Lenovo</span>
+                    </div>
+                </div>
+                
+                <div class="service-card bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                    <div class="service-icon w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6 text-orange-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Networking Solutions</h3>
+                    <img src="https://placehold.co/400x250/1f2937/f97316?text=Networking+Gear" 
+                         alt="Close-up of networking equipment with blinking lights showing routers and switches in operation"
+                         class="mb-4 rounded-lg" />
+                    <p class="text-gray-600 mb-4">
+                        Complete networking infrastructure including routers, switches, wireless solutions, and security appliances for businesses of all sizes.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">Cisco</span>
+                        <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">Juniper</span>
+                        <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">Ubiquiti</span>
+                    </div>
+                </div>
+                
+                <div class="service-card bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                    <div class="service-icon w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6 text-orange-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Business Productivity</h3>
+                    <img src="https://placehold.co/400x250/1f2937/f97316?text=Workplace+Tech" 
+                         alt="Modern workspace setup with laptops, monitors and office communication devices on a clean desk"
+                         class="mb-4 rounded-lg" />
+                    <p class="text-gray-600 mb-4">
+                        Complete office technology ecosystems including desktops, laptops, printers, and collaboration tools to enhance workforce efficiency.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">Microsoft Surface</span>
+                        <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">HP Business</span>
+                        <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">Apple</span>
+                    </div>
+                </div>
+                
+                <div class="service-card bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                    <div class="
