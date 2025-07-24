@@ -219,11 +219,11 @@
     <!-- Hero Section -->
     <section class="hero-section text-white py-20">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Premium IT Solutions for East Africa</h1>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Premium IT Equipment for East Africa</h1>
             <p class="text-xl mb-8 max-w-2xl mx-auto">Your trusted partner for laptops, printers, monitors, CCTV cameras and all IT needs at competitive prices</p>
             <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
                 <a href="#products" class="orange-bg text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Shop Now</a>
-                <a href="#categories" class="bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Browse Categories</a>
+                <a href="#categories" class="bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Browse Product Categories</a>
             </div>
         </div>
     </section>
@@ -602,8 +602,6 @@
                     <ul class="space-y-2">
                         <li><a href="/products-under-80k" class="text-gray-400 hover:text-white hover:bg-orange-600 px-3 py-1 rounded-md inline-block">Products Under 80K</a></li>
                         <li><a href="/products-under-50k" class="text-gray-400 hover:text-white hover:bg-orange-600 px-3 py-1 rounded-md inline-block">Products Under 50K</a></li>
-                        <li><a href="/products-under-40k" class="text-gray-400 hover:text-white hover:bg-orange-600 px-3 py-1 rounded-md inline-block">Products Under 40K</a></li>
-                        <li><a href="/products-under-30k" class="text-gray-400 hover:text-white hover:bg-orange-600 px-3 py-1 rounded-md inline-block">Products Under 30K</a></li>
                     </ul>
                 </div>
 
@@ -715,6 +713,7 @@
                         <label class="flex items-center space-x-2">
                             <input type="radio" name="paymentMethod" value="mpesa" class="text-orange-500">
                             <span>M-PESA</span>
+                            <span> TILL 404930</span>
                         </label>
                         <label class="flex items-center space-x-2">
                             <input type="radio" name="paymentMethod" value="cod" class="text-orange-500">
@@ -724,7 +723,7 @@
                 </div>
 
                 <!-- M-PESA Payment Integration -->
-                <div id="mpesaSection" class="mb-4">
+                <!-- <div id="mpesaSection" class="mb-4">
                     <h4 class="font-bold mb-2">M-PESA Payment</h4>
                     <div class="space-y-3">
                         <div>
@@ -742,7 +741,7 @@
                                 <button id="cancelMpesa" class="text-red-600 hover:text-red-700 font-medium">Cancel</button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <button id="payWithMpesa" class="w-full orange-bg text-white py-3 rounded-lg font-medium hover:bg-opacity-90 transition mb-2">Pay with M-PESA</button>
                 <button id="checkoutBtn" class="w-full bg-gray-200 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-300 transition">Other Payment Methods</button>
@@ -854,7 +853,7 @@
                         <i class="fas fa-laptop-code text-2xl orange-text"></i>
                         <span class="font-bold text-lg">BELIKA EAST AFRICA</span>
                     </div>
-                    <p class="text-gray-400">Your trusted partner for all IT solutions in East Africa since 2015.</p>
+                    <p class="text-gray-400">Your trusted partner for all IT solutions in East Africa since 2020.</p>
                     <div class="flex space-x-4 mt-4">
                         <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
@@ -879,7 +878,7 @@
                     <ul class="space-y-2">
                         <li class="flex items-center">
                             <i class="fas fa-map-marker-alt orange-text mr-2"></i>
-                            <span class="text-gray-400">Nairobi Business Park, Building 5</span>
+                            <span class="text-gray-400">Nairobi Westlands, Building ,Le MAC</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-phone orange-text mr-2"></i>
@@ -898,7 +897,7 @@
             </div>
             
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 Belika East Africa. All rights reserved.</p>
+                <p>&copy; 2025 Belika East Africa. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -1107,7 +1106,7 @@
             const subtotal = cart.reduce((total, item) => total + (products[item.id].price * item.quantity), 0);
             message += `\nTotal: KSh ${subtotal.toLocaleString()}\n\nMy details:\nName: \nPhone: \nDelivery Address: `;
             
-            const whatsappURL = `https://wa.me/0734744206?text=${encodeURIComponent(message)}`;
+            const whatsappURL = `https://wa.me/0734744206?text=${encodeURIComponent("message our sales")}`;
             
             // Open WhatsApp
             window.open(whatsappURL, '_blank');
