@@ -1,0 +1,144 @@
+<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M-Pesa Till Integration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .receipt {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .progress {
+            height: 20px;
+            border-radius: 10px;
+            background-color: #4CAF50;
+            width: 0%;
+            transition: width 1s;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4 max-w-md">
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex items-center mb-6">
+                <img src="data:image/png;base64,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" alt="M-Pesa logo with green colors" class="mr-3" />
+                <h1 class="text-2xl font-bold text-gray-800">M-Pesa Till Payment</h1>
+            </div>
+
+            <form id="paymentForm" class="space-y-4">
+                <div>
+                    <label for="amount" class="block text-sm font-medium text-gray-700">Amount (KES)</label>
+                    <input type="number" id="amount" placeholder="Enter amount" 
+                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border" required>
+                </div>
+
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="0722XXXXXX" 
+                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border" required>
+                </div>
+
+                <div>
+                    <label for="till" class="block text-sm font-medium text-gray-700">Till Number</label>
+                    <input type="number" id="till" placeholder="123456" value="123456" 
+                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border" required>
+                </div>
+
+                <div>
+                    <label for="description" class="block text-sm font-medium text-gray-700">Payment Description</label>
+                    <input type="text" id="description" placeholder="Payment for goods/services" 
+                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border">
+                </div>
+
+                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-md">
+                    Initiate Payment
+                </button>
+            </form>
+
+            <div id="progressSection" class="mt-6 hidden">
+                <p class="text-center font-medium mb-2" id="statusText">Processing payment...</p>
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div id="receipt" class="receipt mt-6">
+                <h3 class="text-center font-bold mb-3">Payment Receipt</h3>
+                <div id="receiptContent"></div>
+                <button id="printReceipt" class="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md">
+                    Print Receipt
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const amount = document.getElementById('amount').value;
+            const phone = document.getElementById('phone').value;
+            const till = document.getElementById('till').value;
+            const description = document.getElementById('description').value || 'Payment for services';
+            
+            // Show progress section
+            document.getElementById('progressSection').classList.remove('hidden');
+            
+            // Simulate payment processing
+            let progress = 0;
+            const progressBar = document.getElementById('progressBar');
+            const statusText = document.getElementById('statusText');
+            
+            const interval = setInterval(() => {
+                progress += 10;
+                progressBar.style.width = `${progress}%`;
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    statusText.textContent = 'Payment completed successfully!';
+                    
+                    // Show receipt after a delay
+                    setTimeout(() => {
+                        generateReceipt(amount, phone, till, description);
+                        document.getElementById('receipt').style.display = 'block';
+                    }, 1000);
+                }
+            }, 500);
+        });
+        
+        document.getElementById('printReceipt').addEventListener('click', function() {
+            window.print();
+        });
+        
+        function generateReceipt(amount, phone, till, description) {
+            const receiptContent = document.getElementById('receiptContent');
+            const transactionCode = `MPX${Math.floor(Math.random() * 1000000000000)}`;
+            const date = new Date().toLocaleString();
+            
+            receiptContent.innerHTML = `
+                <p><strong>Transaction Date:</strong> ${date}</p>
+                <p><strong>Transaction Code:</strong> ${transactionCode}</p>
+                <p><strong>Till Number:</strong> ${till}</p>
+                <p><strong>Phone Number:</strong> ${phone}</p>
+                <p><strong>Amount:</strong> KES ${amount}</p>
+                <p><strong>Description:</strong> ${description}</p>
+                <hr class="my-3">
+                <p class="text-sm">Thank you for using M-Pesa</p>
+                <p class="text-xs mt-2">Transaction may take a few minutes to reflect</p>
+            `;
+        }
+    </script>
+</body>
+</html>

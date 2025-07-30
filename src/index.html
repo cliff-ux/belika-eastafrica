@@ -138,7 +138,76 @@
                 </div>
             </div>
             </nav>
-            <script>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById('searchInput');
+    const searchSubmit = document.getElementById('searchSubmit');
+    const productsSection = document.getElementById('products');
+    const searchMessage = document.getElementById('searchMessage');
+
+    function showMessage(message, isSuccess = true) {
+        searchMessage.textContent = message;
+        searchMessage.style.color = isSuccess ? 'green' : 'red';
+        searchMessage.style.margin = '10px 0';
+        searchMessage.style.fontWeight = 'bold';
+    }
+
+    function performSearch() {
+        const query = searchInput.value.trim().toLowerCase();
+        if (!query) {
+            showMessage('Please enter a product to search.', false);
+            return;
+        }
+
+        const cards = document.querySelectorAll('.product-card');
+        let found = false;
+        let availableProducts = [];
+
+        cards.forEach(card => {
+            const name = card.querySelector('h3')?.textContent.toLowerCase() || '';
+            const isAvailable = card.getAttribute('data-available') !== 'false';
+
+            const keywords = ['laptop', 'printer', 'monitor', 'scanner', 'cctv', 'camera', 'mouse', 'headphone', 'gaming', 'desktop', 'computer', 'accessories'];
+            const matchesKeyword = keywords.some(keyword => query.includes(keyword) && name.includes(keyword));
+
+            if (name.includes(query) || matchesKeyword) {
+                if (isAvailable) {
+                    card.style.display = '';
+                    availableProducts.push(name);
+                    found = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        if (found) {
+            productsSection.scrollIntoView({ behavior: 'smooth' });
+            showMessage('Found products: ' + availableProducts.join(', '));
+        } else {
+            showMessage(`Sorry, the product "${query}" is not available. Please try another search.`, false);
+        }
+    }
+
+    searchSubmit?.addEventListener('click', e => {
+        e.preventDefault();
+        performSearch();
+    });
+
+    searchInput?.addEventListener('keypress', e => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            performSearch();
+        }
+    });
+});
+</script>
+            <!-- <script>
             // Enhanced search functionality
             const searchInput = document.getElementById('searchInput');
             // const searchSubmit = document.getElementById('searchSubmit');
@@ -215,7 +284,7 @@
                     }
                 });
             }
-            </script>
+            </script> -->
     <!-- Hero Section -->
     <section class="hero-section text-white py-20">
         <div class="container mx-auto px-4 text-center">
@@ -711,16 +780,24 @@
                         <span>M-PESA</span>
                         <span> TILL 404930</span>
                     </label>
-                    <label class="flex items-center space-x-2">
+                    <!-- <label class="flex items-center space-x-2">
                         <input type="radio" name="paymentMethod" value="cod" class="text-orange-500">
                         <span>Cash on Delivery</span>
-                    </label>
+                    </label> -->
                 </div>
+
+<div>
+    <!-- <button id="payWithMpesa" class="w-full bg-orange-500 text-white py-3 rounded-lg font-medium hover:bg-opacity-90 transition mt-4">Pay via M-PESA</button> -->
+    <!-- <p class="text-xs text-gray-500 mt-2 text-center">Pay via M-PESA TILL 404930</p> -->
+    <a href="mpesatill.html" target="_blank" class="w-full bg-orange-500 text-white py-3 rounded-lg font-medium hover:bg-opacity-90 transition mt-4">Make  payment(TILL)</a>
+        <!-- <button id="payWithMpesa" class="w-full bg-orange-500 text-white py-3 rounded-lg font-medium hover:bg-opacity-90 transition mt-4">PAY</button> -->
+</div>
             </div>
 
-            <button id="payWithMpesa" class="w-full orange-bg text-white py-3 rounded-lg font-medium hover:bg-opacity-90 transition mb-2">Pay with M-PESA</button>
-            <button id="checkoutBtn" class="w-full bg-gray-200 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-300 transition">Other Payment Methods</button>
-            <p class="text-xs text-gray-500 mt-2 text-center">WhatsApp orders: <span class="font-medium">0734744206</span></p>
+            <!-- <button id="payWithMpesa" class="w-full orange-bg text-white py-3 rounded-lg font-medium hover:bg-opacity-90 transition mb-2">PAY VIA M-PESA TILL</button> -->
+            <a href="https://api.whatsapp.com/send?phone=254734744206&text=Hello%20Belika%20East%20Africa,%20I%20would%20like%20to%20place%20an%20order." target="_blank">
+            <button id="checkoutBtn" class="w-full bg-gray-200 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-300 transition"> Pay Via Whatsapp sales </button>
+            <p class="text-xs text-gray-500 mt-2 text-center">Follow Up WhatsApp orders: <span class="font-medium">0734744206</span></p>
         </div>
     </div>
 </div>
