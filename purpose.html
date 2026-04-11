@@ -6,22 +6,21 @@
     <title>Our Purpose | Belika East Africa</title>
     <style>
         :root {
-            --primary: #1e40af; /* Deep Tech Blue */
-            --secondary: #d97706; /* Hardware Gold/Amber */
-            --accent: #10b981; /* Success Green */
+            --primary: #1e40af;
+            --secondary: #d97706;
+            --accent: #10b981;
             --dark: #0f172a;
             --light: #f1f5f9;
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             background-color: var(--light);
             color: var(--dark);
             line-height: 1.6;
         }
 
-        /* Hero Header */
         header {
             background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
             color: white;
@@ -36,80 +35,61 @@
             padding: 40px 20px;
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        /* The Need Section - Highlighted */
-        .need-box {
+        /* Deep Dive: The Need Section */
+        .need-container {
             background: white;
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 60px;
-            border-top: 8px solid var(--secondary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 50px;
         }
 
-        .need-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+        .need-header {
+            border-left: 10px solid var(--secondary);
+            padding-left: 20px;
+            margin-bottom: 30px;
         }
 
-        .need-item h4 {
+        .need-header h2 {
+            font-size: 2rem;
+            margin: 0;
+            color: var(--primary);
+        }
+
+        .need-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+
+        .need-item h3 {
             color: var(--secondary);
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
+            margin-top: 0;
         }
 
-        /* Target Market Cards */
+        /* Target Market Section */
         .market-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 25px;
         }
 
         .market-card {
-            background: var(--primary);
+            background: var(--dark);
             color: white;
             padding: 30px;
             border-radius: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .market-card:hover {
-            transform: scale(1.03);
-            background: #1e3a8a;
+            text-align: center;
         }
 
         .market-card h3 {
-            margin-top: 0;
-            color: #93c5fd;
-        }
-
-        /* System Tech Specs Footer */
-        .tech-specs {
-            background: #cbd5e1;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 50px;
-            font-size: 0.85rem;
-            text-align: center;
+            color: var(--accent);
         }
 
         footer {
             text-align: center;
-            padding: 60px 20px;
+            padding: 50px;
             color: #64748b;
         }
     </style>
@@ -117,64 +97,54 @@
 <body>
 
     <header>
-        <h1>Belika East Africa</h1>
-        <p>Redefining IT Procurement with 3-Tier Precision</p>
+        <h1>Our Strategic Purpose</h1>
+        <p>Solving the IT Procurement Challenges of Today</p>
     </header>
 
     <div class="container">
         
-        <div class="need-box">
-            <div class="section-title">
-                <h2>The Necessity</h2>
-                <p>Why we built this specialized E-Commerce ecosystem</p>
+        <div class="need-container">
+            <div class="need-header">
+                <h2>The Need for the System</h2>
+                <p>Belika East Africa was developed to address critical failures in the current IT retail landscape.</p>
             </div>
-            
-            <div class="need-grid">
-                <div class="need-item">
-                    <h4>Eliminating Payment Friction</h4>
-                    <p>Traditional wire transfers are too slow for modern tech needs. We integrated <b>M-Pesa Daraja</b> for instant <b>STK Push</b> notifications, ensuring hardware is paid for and dispatched in minutes, not days.</p>
-                </div>
-                <div class="need-item">
-                    <h4>Ensuring Stock Reliability</h4>
-                    <p>In the IT world, "Out of Stock" costs money. Our <b>SQL Server backend</b> utilizes <b>Concurrency Control</b> to prevent multiple users from purchasing the last unit simultaneously.</p>
-                </div>
-                <div class="need-item">
-                    <h4>Securing Digital Identities</h4>
-                    <p>With <b>SHA-256 Password Hashing</b> and <b>SSL Encryption</b>, we provide a fortress for customer data, making us the most trusted IT partner in East Africa.</p>
-                </div>
+
+            <div class="need-item">
+                <h3>1. Solving Payment Friction</h3>
+                <p>Most local vendors rely on manual verification which leads to order backlogs. Our system is essential because it automates the <b>Payment Layer</b> using <b>M-Pesa STK Push (Daraja API)</b>, providing real-time callback processing for instant order confirmation[cite: 26, 45].</p>
+            </div>
+
+            <div class="need-item">
+                <h3>2. Inventory Integrity (Overselling Prevention)</h3>
+                <p>In high-demand hardware markets, stock discrepancies are common. This system utilizes <b>Concurrency Control</b> within our <b>SQL Data Layer</b> to ensure that inventory counts are updated the millisecond a transaction is confirmed, protecting both the customer and the admin[cite: 28, 53].</p>
+            </div>
+
+            <div class="need-item">
+                <h3>3. Bridging the Security Gap</h3>
+                <p>With increasing cyber threats to Kenyan e-commerce, there is a desperate need for platforms using <b>SHA-256 Hashing</b> and <b>Role-Based Access Control (RBAC)</b>. Our system ensures that Admin, Moderator, and Customer data remain isolated and encrypted[cite: 36, 38].</p>
             </div>
         </div>
 
-        <div class="section-title">
-            <h2>Our Target Market</h2>
-            <p>Tailored solutions for every actor in the tech landscape</p>
-        </div>
-
+        <h2 style="text-align: center; margin-bottom: 30px;">Our Target Market</h2>
         <div class="market-grid">
             <div class="market-card">
-                <h3>Individual Techies</h3>
-                <p>Students and developers (like our founder, Cliff) who need genuine IT components with easy mobile payment options.</p>
+                <h3>IT Professionals</h3>
+                <p>Individual developers and engineers requiring high-spec hardware with quick, mobile-first payment options[cite: 14].</p>
             </div>
             <div class="market-card">
-                <h3>SMEs & Enterprises</h3>
-                <p>Local businesses seeking a professional platform with <b>Role-Based Access</b> to manage bulk hardware orders securely.</p>
+                <h3>SMEs & Businesses</h3>
+                <p>Small to medium enterprises needing a secure, scalable <b>3-tier architecture</b> to procure office IT infrastructure[cite: 5, 55].</p>
             </div>
             <div class="market-card">
-                <h3>Regional Distributors</h3>
-                <p>Suppliers looking for a <b>scalable cloud-hosted</b> platform to showcase inventory across East Africa.</p>
+                <h3>Tech Enthusiasts</h3>
+                <p>The general public in East Africa looking for a verified, secure platform to browse and review computing products safely[cite: 14, 22].</p>
             </div>
-        </div>
-
-        <div class="tech-specs">
-            <b>System Architecture:</b> 3-Tier (VB.NET Application Layer | SQL Server Data Layer) &bull; 
-            <b>Security:</b> SSL + RBAC &bull; 
-            <b>Deployment:</b> Windows Server Cloud
         </div>
 
     </div>
 
     <footer>
-        <p>&copy; 2026 Belika East Africa | Designed by Cliff Ridley Muhangani (24/07242)</p>
+        <p>&copy; 2026 Belika East Africa | Developed by Cliff Ridley Muhangani | Reg: 24/07242 [cite: 3, 4]</p>
     </footer>
 
 </body>
